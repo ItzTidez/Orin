@@ -1,0 +1,19 @@
+intNum = 7;
+floatNum = 3.0;
+string = "cat";
+list = []
+
+function MyFunction(functionString)
+{
+	Print(functionString);
+}
+
+function GetNumber(number)
+{
+	return number + 1;
+}
+
+for i as (5)
+{
+	MyFunction(string + " " + str(GetNumber(i)));
+}
