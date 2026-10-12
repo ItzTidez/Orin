@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orin - Programming language</title>
+    <meta name="description" content="Orin is a programming language with simple keywords, simple syntax and simple variables.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Averia+Serif+Libre:wght@700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a class="brand" href="/">Orin</a>
+            <div class="nav-links">
+                <a href="docs">Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero container">
+            <div class="hero-text">
+                <!-- REPLACE: all of this text is placeholder, write your own -->
+                <p class="eyebrow">Version 0.1, in development</p>
+                <h1>A small language for building real things.</h1>
+                <p class="lead">
+                    Orin keeps keywords short, syntax predictable and variables
+                    easy to reason about, without limiting what you can build.
+                </p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="docs">Read the docs</a>
+                    <a class="btn" href="#principles">How it works</a>
+                </div>
+            </div>
+
+            <figure class="code-window">
+                <figcaption>hello.orin</figcaption>
+<pre><code><span class="com">// greet someone</span>
+name = <span class="str">"Tidez"</span>
+
+<span class="kw">function</span> greet(who)
+{
+    <span class="kw">print</span>(<span class="str">"Hello, "</span> + who)
+}
+
+greet(name)</code></pre>
+            </figure>
+        </header>
+
+        <section class="principles container" id="principles">
+            <h2>What Orin is going for</h2>
+            <dl>
+                <div class="row">
+                    <dt>01 / keywords</dt>
+                    <dd>Short, plain-English words. If you can guess what a keyword does, it did its job.</dd>
+                </div>
+                <div class="row">
+                    <dt>02 / syntax</dt>
+                    <dd>Few rules, applied the same way everywhere, so there is less to memorise.</dd>
+                </div>
+                <div class="row">
+                    <dt>03 / variables</dt>
+                    <dd>Simple, predictable variable handling. You always know where a value lives.</dd>
+                </div>
+            </dl>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Orin &middot; 2026</p>
+            <a href="https://github.com/ItzTidez/Orin">GitHub</a>
+            <a></a>
+        </div>
+    </footer>
+
+</body>
+</html>

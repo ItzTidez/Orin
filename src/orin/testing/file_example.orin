@@ -5,7 +5,7 @@ list = []
 
 function MyFunction(functionString)
 {
-	Print(functionString);
+	print(functionString);
 }
 
 function GetNumber(number)

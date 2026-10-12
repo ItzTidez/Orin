@@ -2,25 +2,29 @@ line = str(input())
 currentCharacter = ""
 tokens = []
 keywords = ["if", "else", "for", "while", "return", "function"]
+assignmentOperators = ["+", "-", "*", "/"]
 isNumberCurrently = False
 isStringCurrently = False
 isIdentifierCurrently = False
+skipNext = False
 
-for i in line:
-
+for i in range(len(line)):
+    if skipNext == True:
+        skipNext = False
+        continue
     # Spaces
-    if i == " ":
+    if line[i] == " ":
         if isStringCurrently == False and isIdentifierCurrently == False:
             continue
         elif isStringCurrently:
-            currentCharacter += i
+            currentCharacter += line[i]
             continue
     # Everything else
 
     # Numbers
     if isNumberCurrently:
-        if i.isdigit():
-            currentCharacter += i
+        if line[i].isdigit():
+            currentCharacter += line[i]
             
         else:
             tokens.append(["NUMBER", currentCharacter])
@@ -28,16 +32,16 @@ for i in line:
             currentCharacter = ""
     # Strings
     elif isStringCurrently:
-        if i == '"' or i == "'":
+        if line[i] == '"' or line[i] == "'":
             if currentCharacter != "":
                 tokens.append(["STRING", currentCharacter])
                 isStringCurrently = False
                 currentCharacter = ""
         else:
-            currentCharacter += i
+            currentCharacter += line[i]
     elif isIdentifierCurrently:
-        if i.isalpha() or i.isdigit() or i == "-" or i == "_":
-            currentCharacter += i
+        if line[i].isalpha() or line[i].isdigit()  or line[i] == "_":
+            currentCharacter += line[i]
         else:
             if currentCharacter in keywords:
                 tokens.append(["KEYWORD", currentCharacter])
@@ -49,39 +53,55 @@ for i in line:
                 currentCharacter = ""
     # Everything else
     else:
-        if i.isdigit():
-            currentCharacter += i
+        if line[i].isdigit():
+            currentCharacter += line[i]
             isNumberCurrently = True
-        elif i.isalpha():
-            currentCharacter += i
+        elif line[i].isalpha():
+            currentCharacter += line[i]
             isIdentifierCurrently = True
-        elif i == '"' or i == "'":
+        elif line[i] == '"' or line[i] == "'":
             isStringCurrently = True
     # Misc tokens
-    if i == "+":
-        tokens.append(["PLUS", i])
-    if i == "-":
-        tokens.append(["MINUS", i])
-    if i == "/":
-        tokens.append(["SLASH", i])
-    if i == "=":
-        tokens.append(["EQUALS", i])
-    if i == "*":
-        tokens.append(["STAR", i])
-    if i == ";":
-        tokens.append(["SEMICOLON", i])
-    if i == "(":
-        tokens.append(["LEFT_PAR", i])
-    if i == ")":
-        tokens.append(["RIGHT_PAR", i])
-    if i == "[":
-        tokens.append(["LEFT_SQR", i])
-    if i == "]":
-        tokens.append(["RIGHT_SQR", i])
-    if i == "{":
-        tokens.append(["LEFT_CURL", i])
-    if i == "}":
-        tokens.append(["RIGHT_CURL", i])
+    if line[i] == "+":
+        if line[i + 1] == "=":
+            tokens.append(["PLUS_EQUALS", "+="])
+            skipNext = True
+            continue
+        tokens.append(["PLUS", line[i]])
+    if line[i] == "-":
+        if line[i + 1] == "=":
+            tokens.append(["MINUS_EQUALS", "-="])
+            skipNext = True
+            continue
+        tokens.append(["MINUS", line[i]])
+    if line[i] == "/":
+        if line[i + 1] == "=":
+            tokens.append(["SLASH_EQUALS", "/="])
+            skipNext = True
+            continue
+        tokens.append(["SLASH", line[i]])
+    if line[i] == "=":
+        tokens.append(["EQUALS", line[i]])
+    if line[i] == "*":
+        if line[i + 1] == "=":
+            tokens.append(["STAR_EQUALS", "*="])
+            skipNext = True
+            continue
+        tokens.append(["STAR", line[i]])
+    if line[i] == ";":
+        tokens.append(["SEMICOLON", line[i]])
+    if line[i] == "(":
+        tokens.append(["LEFT_PAR", line[i]])
+    if line[i] == ")":
+        tokens.append(["RIGHT_PAR", line[i]])
+    if line[i] == "[":
+        tokens.append(["LEFT_SQR", line[i]])
+    if line[i] == "]":
+        tokens.append(["RIGHT_SQR", line[i]])
+    if line[i] == "{":
+        tokens.append(["LEFT_CURL", line[i]])
+    if line[i] == "}":
+        tokens.append(["RIGHT_CURL", line[i]])
         
 
 
