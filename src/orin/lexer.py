@@ -81,6 +81,10 @@ for i in range(len(line)):
             continue
         tokens.append(["SLASH", line[i]])
     if line[i] == "=":
+        if line[i + 1] == "=":
+            tokens.append(["SLASH_EQUALS", "/="])
+            skipNext = True
+            continue
         tokens.append(["EQUALS", line[i]])
     if line[i] == "*":
         if line[i + 1] == "=":
